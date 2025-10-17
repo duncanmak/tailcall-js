@@ -15,3 +15,11 @@ Of note, `bun.ts` shows that JSC does implement tail-call elimination, so the
 IFO technique is not necessary.
 
 `bun test ./bun.ts`
+
+This is also an experiment to implement tail-call elimintation in an interpreter that supports delimited continuations.
+
+**Algebraic Effects in JavaScript part 1 - continuations and control transfer**
+<https://fnayre.github.io/2018-11-19-algebraic-effects-series-1/>
+
+**Algebraic Effects in JavaScript part 2 - Capturing continuations with Generators**
+<https://fnayre.github.io/2018-11-19-algebraic-effects-series-2/>
