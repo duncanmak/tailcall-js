@@ -1,4 +1,4 @@
-import { Continuation, setContinuation } from "./continuation.ts";
+import { Continuation2, setContinuation } from "./continuation.ts";
 
 export function factorial(num: number, acc: number) {
   if (num == 0) {
@@ -7,7 +7,7 @@ export function factorial(num: number, acc: number) {
   return factorial(num - 1, num * acc);
 }
 
-export const factCont: Continuation = {
+export const factCont: Continuation2 = {
   apply() {
     const { arg0, arg1 } = this;
     if (arg0 == 0) {

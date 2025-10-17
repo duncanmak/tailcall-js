@@ -9,6 +9,6 @@ Deno.test("odd / even", () => {
 
 Deno.test("odd / even continuation", () => {
   const c = isOddCont;
-  c.arg0 = 5000001;
+  c.arg = 5000001;
   assert(run(c).result);
 });

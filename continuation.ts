@@ -1,10 +1,17 @@
+  // deno-lint-ignore-file no-explicit-any
+
 export interface Continuation {
-  // deno-lint-ignore no-explicit-any
-  arg0: any;
-  // deno-lint-ignore no-explicit-any
-  arg1: any;
   result?: unknown;
   apply(): void;
+}
+
+export interface Continuation1 extends Continuation {
+  arg: any;
+}
+
+export interface Continuation2 extends Continuation {
+  arg0:any;
+  arg1: any;
 }
 
 let $CONTINUATION: Continuation | undefined;
@@ -31,3 +38,5 @@ export function run(cont: Continuation): Continuation {
     }
   }
 }
+
+
