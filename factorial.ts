@@ -7,23 +7,19 @@ export function factorial(num: number, acc: number) {
   return factorial(num - 1, num * acc);
 }
 
-export function factCont(num: number, acc: number): Continuation {
-  const self: Continuation = {
-    apply: () => {
-      if (self.arg0 == 0) {
-        self.result = self.arg1;
-        setContinuation(undefined);
-        return;
-      }
-
-      self.arg1 = (self.arg0 as number) * (self.arg1 as number);
-      self.arg0 = (self.arg0 as number) - 1;
-      setContinuation(self);
-    },
-    result: undefined,
-    arg0: num,
-    arg1: acc,
-  };
-
-  return self;
-}
+export const factCont: Continuation = {
+  apply() {
+    const { arg0, arg1 } = this;
+    if (arg0 == 0) {
+      this.result = arg1;
+      setContinuation(undefined);
+      return;
+    }
+    this.arg1 = arg0 * arg1;
+    this.arg0 = arg0 - 1;
+    setContinuation(this);
+  },
+  result: undefined,
+  arg0: undefined,
+  arg1: undefined,
+};

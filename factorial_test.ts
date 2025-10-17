@@ -7,5 +7,8 @@ Deno.test("factorial", () => {
 });
 
 Deno.test("factCont", () => {
-  assertEquals(run(factCont(5, 1)).result, 120);
+  const c = factCont;
+  c.arg0 = 5;
+  c.arg1 = 1;
+  assertEquals(run(c).result, 120);
 });

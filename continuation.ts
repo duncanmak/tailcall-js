@@ -1,6 +1,8 @@
 export interface Continuation {
-  arg0: unknown;
-  arg1: unknown;
+  // deno-lint-ignore no-explicit-any
+  arg0: any;
+  // deno-lint-ignore no-explicit-any
+  arg1: any;
   result?: unknown;
   apply(): void;
 }
@@ -20,7 +22,7 @@ export function run(cont: Continuation): Continuation {
   setContinuation(cont);
   while (true) {
     const current = getContinuation();
-  
+
     if (current === undefined) {
       return prev;
     } else {

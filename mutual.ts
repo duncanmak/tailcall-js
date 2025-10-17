@@ -1,7 +1,7 @@
 import { Continuation, setContinuation } from "./continuation.ts";
 
 export function isEven(n: number): boolean {
-  console.log("isEven", n);
+  // console.log("isEven", n);
   if (n == 0) {
     return true;
   } else {
@@ -10,7 +10,7 @@ export function isEven(n: number): boolean {
 }
 
 export function isOdd(n: number): boolean {
-  console.log("isOdd", n);
+  // console.log("isOdd", n);
   if (n == 0) {
     return false;
   } else {
@@ -22,13 +22,14 @@ export const isOddCont: Continuation = {
   arg0: undefined,
   arg1: undefined,
   result: undefined,
-  apply: () => {
-    if (isOddCont.arg0 == 0) {
-      isOddCont.result = false;
+  apply() {
+    const { arg0 } = this;
+    if (arg0 == 0) {
+      this.result = false;
       setContinuation(undefined);
       return;
     }
-    isEvenCont.arg0 = (isOddCont.arg0 as number) - 1;
+    isEvenCont.arg0 = arg0 - 1;
     setContinuation(isEvenCont);
   },
 };
@@ -37,13 +38,14 @@ export const isEvenCont: Continuation = {
   arg0: undefined,
   arg1: undefined,
   result: undefined,
-  apply: () => {
-    if (isEvenCont.arg0 == 0) {
-      isEvenCont.result = true;
+  apply() {
+    const { arg0 } = this;
+    if (arg0 == 0) {
+      this.result = true;
       setContinuation(undefined);
       return;
     }
-    isOddCont.arg0 = (isEvenCont.arg0 as number) - 1;
+    isOddCont.arg0 = arg0 - 1;
     setContinuation(isOddCont);
   },
 };
